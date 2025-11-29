@@ -1,0 +1,919 @@
+
+body {
+    font-family: 'Poppins', Arial, sans-serif;
+    margin: 0;
+    background-color: grey;
+    color: #000;
+    min-height: 100vh;
+}
+
+.boxing-theme {
+    background-color:#fff;
+    margin-right: 48px;
+   
+}
+
+.hero {
+    padding: 15px 15px 10px;
+     width: 100%;
+  
+}
+
+.hero-overlay {
+    max-width: 830px;
+    margin: 5px auto;
+    background: whitesmoke;
+    border: 1px dotted #1b1b1b;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 0px 5px black;
+    color: black;
+    font-size: 10px;
+    text-align: center;
+    margin-right: 320px;
+    
+    
+}
+
+.hero-eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size:30px;
+    color: black;
+    font-weight: bolder;
+    margin-bottom: 10px;
+    
+}
+
+.hero-subtitle {
+    color:black;
+    max-width: 720px;
+}
+
+.hero-tags {
+    margin-top: 18px;
+    
+    
+}
+
+.pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 14px;
+    border-radius: 10px;
+    border: 1px solid tranparent;
+    margin-right:5px;
+    font-size: 20px;
+    color: black;
+    background: transparent;
+    font-weight: bold;
+    margin-bottom:10px;
+    margin-top: 10px;
+    
+    
+    
+}
+
+.pill.active {
+    background: #8B0000;
+    border-color: #8B0000;
+    color: white;
+    
+}
+
+.pill-small {
+    font-size: 0.75rem;
+    padding: 2px 10px;
+    margin-right: 6px;
+    margin-bottom:10px;
+    
+}
+
+.view-container {
+    width: fit-content;
+    margin: 0 auto 10px;
+    padding: 0 24px;
+    display: flex;
+    flex-direction:row;
+    gap: 24px;
+    width: 100%;
+    background-color: #fff;
+     
+     
+}
+
+.comparison-grid {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(260px, 1fr));
+    
+    
+    
+}
+
+.comparison-grid .chart-panel {
+    grid-column: 1 / -1;
+}
+
+.kpi-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    
+}
+
+.kpi-cards.compact {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 10px;
+}
+
+.kpi-cards.compact.horizontal {
+    grid-auto-flow: row;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    overflow: visible;
+}
+
+.comparison-grid .win-ratio,
+.comparison-grid .advanced-stats {
+    min-height: 100%;
+}
+
+.comparison-filters {
+    margin-bottom: 4px;
+    
+}
+
+.comparison-filters {
+    background: black;
+    box-shadow: 0 18px 40px rgba(0,0,0,0.3);
+    color: black;
+    border-radius: 28px;
+}
+
+.comparison-filters form {
+     background: #fff;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    text-align: center;
+   
+    
+
+}
+
+
+.comparison-filters .control-section {
+    border: none;
+    margin: 0;
+    padding: 0;
+    min-width: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+.comparison-filters h3 {
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    color: black;
+    margin-bottom: 6px;
+}
+
+.comparison-filters label {
+    color:black;
+    font-weight: 600;
+}
+
+.comparison-filters select,
+.comparison-filters .search-input {
+    width: 100%;
+    max-width: 240px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.comparison-filters select {
+    background:#fff;
+    color: black;
+    border: 1px solid black;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
+}
+
+.comparison-filters .selected-gyms-note .pill {
+    background: rgba(0,0,0,0.3);
+    color: #fff;
+}
+
+.metric-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+}
+
+.metric-panel .card.inner {
+    background: transparent;
+    color: black; 
+    width: 800px;
+    
+    
+}
+
+.insight-pair {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(240px, 1fr));
+    gap: 16px;
+    box-shadow: 0 0 5px 5px #aaa;
+    
+}
+
+@media (max-width: 992px) {
+    .view-container {
+        padding: 0 16px;
+        gap: 18px;
+    }
+
+    .hero-overlay {
+        padding: 32px 24px;
+    }
+
+    .view-tabs {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .comparison-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .gym-cards {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+
+    .gym-stats {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    }
+}
+
+.view-tabs {
+   width: fit-content;
+    margin: -6px auto 15px;
+    padding: 0 24px;
+    display: flex;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 5px;
+    
+     
+   
+}
+
+.view-tab {
+    background: black;
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 10px;
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    box-shadow: 0 12px 25px rgba(0,0,0,0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    cursor: pointer;
+    width: 410px;
+    height:80px;
+}
+
+.view-tab:hover {
+    transform: translateY(-4px);
+    border-color: #fff;
+    box-shadow: 0 18px 35px rgba(255,255,255,0.2);
+}
+
+.view-tab.active {
+    border-color: #fff;
+    box-shadow: 0 25px 45px rgba(255,255,255,0.3);
+    background: #650202 ;
+}
+
+.tab-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #fff;
+    
+}
+
+.tab-subtitle {
+    color: rgba(255,255,255,0.8);
+    font-size: 0.9rem;
+    
+}
+
+.filters-panel,
+.recommendations-panel,
+.comparison-panel {
+    
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 10px;
+    padding: 24px;
+    box-shadow: 0 1px 10px black;
+    color: black;
+    margin-bottom: 10px;
+    background-color: #fff;
+    
+    
+
+}
+
+
+.dashboard-view {
+    display:none;
+}
+
+.dashboard-view.active {
+    display: block;
+}
+
+.control-section {
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    padding-bottom: 18px;
+    margin-bottom: 18px;
+}
+
+.controls {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    
+    
+    
+}
+
+.control-section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    
+    
+}
+
+.control-section h3 {
+    margin-top: 0;
+    color: black;
+    font-weight:600;
+    font-size:larger;
+}
+
+.control-section label {
+    font-weight: 600;
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    color: black;
+    
+}
+
+select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 8px;
+    color: black;
+    font-weight: 600;
+    background-color:#fff;
+}
+
+select option {
+    color: black;
+    background: #fff;
+}
+
+.note {
+    font-size: 0.8em;
+    color: rgba(255,255,255,0.7);
+    margin-top: -5px;
+    margin-bottom: 10px;
+}
+
+.section-header h2 {
+    margin: 0;
+    color:black;
+}
+
+.section-header p {
+    margin: 9px 0 0;
+    color: black;
+}
+
+.selected-gyms-note {
+    margin-top: 6px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.dual-selects {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+}
+
+.gym-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin: 40px 0;
+    background-color:transparent;
+    height: fit-content;
+    
+   
+
+
+    
+}
+
+.gym-card {
+   background-color:#f2f3f4 ;
+    color: white;
+    border-radius: 10px;
+    /* border: 1px solid rgba(255,255,255,0.2); */
+     box-shadow: 0 4px 12px #aaa;
+     /* border: 1px dotted black;  */
+     width: 310px;
+      box-shadow: 0 0px 4px 3px #aaa;
+     
+    
+   
+
+}
+
+.gym-card h3,
+.gym-card h4 {
+    margin-top: 0;
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+    padding-bottom: 10px;
+    color: white;
+    text-align: center;
+    background-color:#650202;
+    height:40px ;
+    padding-top:20px;
+    border-radius: 10px;
+    width:310px;
+    
+    }
+
+.gym-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    margin: 1px 0;
+    color:black;
+    gap: 22px;
+    
+}
+
+.stat {
+    text-align: center;
+    padding: 6px 4px;
+    border-radius: 10px;
+    background:transparent;
+    color: black;
+    
+}
+
+.stat.gender.male {
+     background:#fff;
+     border-radius: 10px;
+   
+  
+}
+
+.stat.gender.female {
+    background:#fff;
+    border-radius: 10px;
+}
+
+.stat-value {
+    display: block;
+    font-size: 1.4em;
+    font-weight: bold;
+    color:black;
+    
+}
+
+.stat-label {
+    color: blwhack;
+    font-size: 0.85em;
+    
+}
+
+.location-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 50px;
+    margin-top: 30px;
+    width: 98%;
+    
+}
+
+.location-card {
+    background-color:#f2f3f4;
+    /* border: 1px dotted black;  */
+    border-radius: 10px;
+    padding: 16px;
+    color: black;
+    text-align: center;
+  box-shadow: 0 0px 5px 5px #aaa;
+  width: 310px;
+  font-size: 1.1rem;
+  
+
+    
+}
+
+.gym-cards.compact .gym-card {
+    background:#f2f3f4;
+    
+   
+}
+
+.pill-group {
+    display: flex;
+    gap: 10px;
+    
+    
+}
+
+.kpi-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
+    margin-bottom: 20px;
+    
+    
+}
+
+.kpi-card {
+    background: #fff;
+    padding: 20px;
+    border-radius: 14px;
+    text-align: center;
+    border: 1px solid rgba(255,255,255,0.2);
+    color: #fff;
+     box-shadow: 0 4px 12px #aaa;
+     
+     
+}
+
+.kpi-value {
+    font-size:1em;
+
+    
+    color: black;
+    display: block;
+    padding-top: 5px;
+    
+}
+
+.kpi-label {
+    color: black;
+    margin: 0;
+     font-size:1em;
+     font-weight: bold;
+     
+}
+
+.info-banner {
+    background: rgba(0,0,0,0.3);
+    border-left: 4px solid #fff;
+    padding: 10px 15px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+    color: black;
+    
+    
+    
+}
+
+.chart-container {
+    background:white;
+    padding: 20px;
+    border-radius: 18px;
+    margin-bottom: 24px;
+    border: 1px dotted black;
+    box-shadow: 0 4 30px #aaa;
+    
+}
+
+.insights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px,1fr));
+    gap: 26px;
+    
+    
+    
+}
+
+.card {
+    background: #fff;
+    border-radius: 14px;
+    padding: 20px;
+    border: 1px solid rgba(255,255,255,0.2);
+    color: #fff;
+     padding-bottom: 100px;
+    
+    
+}
+
+.win-ratio ul {
+    padding-left: 18px;
+   
+   
+    
+    
+}
+
+.advanced-stats .stat-item {
+    width: 100%;
+    padding: 10px;
+    background:#fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px #aaa;
+    
+    
+}
+
+
+.stat-label {
+    font-weight: 600;
+    font-size: 20px;
+    color: black;
+    width: 205px;
+    
+}
+
+.stat-value {
+    color: black;
+    font-size: 14px;
+    
+}
+
+.stats-grid {
+    display:inline-flex;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+    
+}
+
+.empty-state {
+    padding: 20px;
+    text-align: center;
+    color: rgba(255,255,255,0.8);
+   
+}
+
+.other-gyms-table {
+    margin-top: 24px;
+    background: #fff;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 14px;
+    padding: 16px;
+    color: black;
+     box-shadow: 0 4px 12px #aaa;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+.other-gyms-table table {
+    width: 100%;
+    border-collapse: collapse;
+    color: black;
+}
+
+.other-gyms-table th,
+.other-gyms-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    text-align: left;
+    font-size: 0.9rem;
+}
+
+.other-gyms-table th {
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    color: #fff;
+    font-weight: bold;
+    background-color: #650202;
+}
+
+.other-gyms-table tr:last-child td {
+    border-bottom: none;
+}
+
+@media (max-width: 1100px) {
+    .comparison-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .hero-overlay {
+        padding: 24px;
+    }
+
+    .pill-group {
+        flex-wrap: wrap;
+    }
+
+    .kpi-cards.compact.horizontal {
+        grid-auto-flow: row;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    }
+
+    .dual-selects {
+        grid-template-columns: 1fr;
+    }
+
+    .gym-stats {
+        grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+    }
+
+    .view-container {
+        padding: 0 12px;
+    }
+
+    .chart-container {
+        padding: 16px;
+    }
+
+    .comparison-filters form {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+.modal-content {
+    background-color: #fff;
+    margin: 5% auto;
+    padding: 20px;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 800px;
+    max-height: 80vh;
+    overflow-y: auto;
+    color: #000;
+}
+.close {
+    color: black;
+    float: right;
+    font-size: 35px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.close:hover { color: #fff;background-color: #b01818; }
+
+.gym-analysis {
+    background: #fff;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border-left: 4px solid #000;
+    color: #000;
+     box-shadow: 0 4px 12px black;
+}
+.gym-analysis h5 {
+    margin-top: 0;
+    color: black;
+}
+
+.suggestion-btn {
+    width: 100%;
+    padding: 12px 16px;
+    margin-top: 12px;
+    background-color: #367588;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 0px 4px 3px #aaa;
+}
+
+.suggestion-btn:hover {
+    background-color: #8B0000;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.suggestion-btn:active {
+    transform: translateY(0);
+}
+
+.suggestion-btn-small {
+    padding: 4px 8px;
+    margin-left: 8px;
+    background-color: #367588;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    vertical-align: middle;
+}
+
+.suggestion-btn-small:hover {
+    background-color: #8B0000;
+}
+
+.win-ratio ul li {
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.suggestions-list {
+    list-style: decimal;
+    padding-left: 20px;
+    margin: 20px 0;
+    
+    
+}
+
+.suggestion-item {
+    margin-bottom: 16px;
+    padding: 12px;
+
+    border-radius: 4px;
+    line-height: 1.6;
+    color: black;
+}
+
+.suggestion-item:last-child {
+    margin-bottom: 0;
+}
+
+#suggestionsModal .modal-content {
+    max-width: 600px;
+    
+}
+
+#suggestionsModal h2 {
+    color: #367588;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+  
+} 
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

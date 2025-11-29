@@ -1,0 +1,781 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Boxing Dashboard (Year2020-2024) </title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" id="main-stylesheet">
+    <script>
+        // Auto-reload CSS in development mode for instant updates
+        (function() {
+            if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+                const stylesheet = document.getElementById('main-stylesheet');
+                const originalHref = stylesheet.href.split('?')[0];
+                
+                // Reload CSS every second to pick up changes instantly
+                setInterval(() => {
+                    const newHref = originalHref + '?v=' + Date.now();
+                    if (stylesheet.href !== newHref) {
+                        stylesheet.href = newHref;
+                    }
+                }, 1000);
+            }
+        })();
+    </script>
+</head>
+<body class="boxing-theme">
+    <header class="hero">
+        <div class="hero-overlay">
+            <div class="hero-content">
+                <p class="hero-eyebrow">Year 2020-2024 Overview</p>
+                <h1>🥊 Boxing Gym Recommendation in Kathmandu</h1>
+               
+                <div class="hero-tags">
+                    <span class="pill">Mode: {{ selected_mode }}</span>
+                    <span class="pill">Gender: {{ selected_gender }}</span>
+                    <span class="pill">Focus: {{ selected_location }}</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="view-tabs">
+        <button type="button" class="view-tab active" data-view="recommendations">
+            <span class="tab-title">Recommend Top Boxing Gyms</span>
+        
+        </button>
+        <button type="button" class="view-tab" data-view="comparison">
+            <span class="tab-title">Comparision Table (Gyms and Boxers)</span>
+    
+        </button>
+    </div>
+
+    <main>
+        <div class="view-container dashboard-view active" data-view="recommendations">
+            <section class="filters-panel">
+                <form method="POST" id="recommendationsForm">
+                    <input type="hidden" name="mode" value="Gym">
+                    <input type="hidden" name="gender" value="{{ selected_gender }}">
+                    <input type="hidden" name="year" value="{{ selected_year }}">
+                    <input type="hidden" name="weight" value="{{ selected_weight }}">
+                    <input type="hidden" name="diagram" value="{{ selected_diagram }}">
+                    <input type="hidden" name="gym" value="{{ request.form.get('gym', 'All Gyms') }}">
+                    {% for gym in selected_gyms %}
+                        <input type="hidden" name="gyms" value="{{ gym }}">
+                    {% endfor %}
+                    {% for boxer in selected_boxers %}
+                        <input type="hidden" name="boxers" value="{{ boxer }}">
+                    {% endfor %}
+                    <div class="control-section">
+                        <h3>Find Top Gyms According To Locations</h3>
+                        <label></label>Choose Location
+                        <select name="location">
+                            {% for location in locations %}
+                                <option value="{{location}}" {% if location==selected_location %}selected{% endif %}>{{location}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </form>
+            </section>
+
+            <section id="recommendations" class="recommendations-panel">
+                    <header class="section-header">
+                        <div>
+                            <h2>Boxing Gyms Recommendations</h2>
+                            <p>
+                                {% if selected_location == "All Locations" %}
+                                    Spotlighting the top-performing gyms in every active location.
+                                {% else %}
+                                    Showing the most dominant gyms in {{ selected_location }}.
+                                {% endif %}
+                            </p>
+                        </div>
+                    </header>
+
+                    {% if selected_location != "All Locations" and recommended_gyms %}
+                        <div class="gym-cards">
+                            {% for gym in recommended_gyms %}
+                            <div class="gym-card">
+                                <h3>{{ gym.gym }}</h3>
+                                <div class="gym-stats">
+                                    <div class="stat">
+                                        <span class="stat-label">Win Ratio</span>
+                                        <span class="stat-value">{{ "%.1f"|format(gym.win_ratio * 100) }}%</span>
+                                    </div>
+                                    <div class="stat">
+                                        
+                                        <span class="stat-label">Total Wins</span>
+                                        <span class="stat-value">{{ gym.total_wins }}</span>
+                                    </div>
+                                    <div class="stat">
+                                         <span class="stat-label">Boxers</span>
+                                        <span class="stat-value">{{ gym.total_boxers }}</span>
+                                       
+                                    </div>
+                    <div class="stat gender male">
+                         <span class="stat-label">Male WR</span>
+                        <span class="stat-value">{{ "%.1f"|format(gym.male_win_ratio * 100) }}%</span>
+                       
+                    </div>
+                    <div class="stat gender female">
+                        <span class="stat-label">Female WR</span>
+                        <span class="stat-value">{{ "%.1f"|format(gym.female_win_ratio * 100) }}%</span>
+                        
+                    </div>
+                                </div>
+                                <button class="suggestion-btn" onclick="showSuggestions('gym', '{{ gym.gym }}', '{{ selected_location }}')">
+                                    💡 Suggestions to Improve
+                                </button>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    {% elif selected_location == "All Locations" and location_recommendations %}
+                        <div class="location-grid">
+                            {% for loc, gyms_list in location_recommendations.items() %}
+                                <div class="location-card">
+                                    <h3>{{ loc }}</h3>
+                                    <div class="gym-cards compact">
+                                        {% set top_gym = gyms_list[0] %}
+                                        <div class="gym-card">
+                                            <h4>{{ top_gym.gym }}</h4>
+                                            <div class="gym-stats">
+                                                <div class="stat">
+                                                    <span class="stat-label">Win Ratio</span>
+                                                    <span class="stat-value">{{ "%.1f"|format(top_gym.win_ratio * 100) }}%</span>
+                                                    
+                                                </div>
+                                                <div class="stat">
+                                                     <span class="stat-label">Wins</span>
+                                                    <span class="stat-value">{{ top_gym.total_wins }}</span>
+                                                   
+                                                </div>
+                                                <div class="stat gender male">
+                                                     <span class="stat-label">Male WR</span>
+                                                    <span class="stat-value">{{ "%.1f"|format(top_gym.male_win_ratio * 100) }}%</span>
+                                                   
+                                                </div>
+                                                <div class="stat gender female">
+                                                       <span class="stat-label">Female WR</span>
+                                                    <span class="stat-value">{{ "%.1f"|format(top_gym.female_win_ratio * 100) }}%</span>
+                                                 
+                                                </div>
+                                            </div>
+                                            <button class="suggestion-btn" onclick="showSuggestions('gym', '{{ top_gym.gym }}', '{{ loc }}')">
+                                                💡 Suggestions to Improve
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <p class="empty-state">No recommendations available for current filters.</p>
+                    {% endif %}
+
+                    {% if selected_location != "All Locations" and location_gym_details %}
+                    <div class="other-gyms-table card">
+                        <h3>Complete Gym Stats for {{ selected_location }}</h3>
+                        <div class="table-wrapper">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Gym</th>
+                                        <th>Win Ratio</th>
+                                        <th>Total Wins</th>
+                                        <th>Boxers</th>
+                                        <th>Fights</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for gym in location_gym_details %}
+                                    <tr>
+                                        <td>{{ gym.gym }}</td>
+                                        <td>{{ "%.1f"|format(gym.win_ratio * 100) }}%</td>
+                                        <td>{{ gym.total_wins }}</td>
+                                        <td>{{ gym.total_boxers }}</td>
+                                        <td>{{ gym.total_fights }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    {% endif %}
+                </section>
+        </div>
+
+        <div class="view-container dashboard-view" data-view="comparison">
+            <section class="filters-panel comparison-filters">
+                <form method="POST" id="comparisonForm">
+                    <div class="control-section">
+                        <h3>Compare Setup</h3>
+                        <label>Comparison Mode:</label>
+                        <select name="mode">
+                            <option value="Gym" {% if selected_mode=='Gym' %}selected{% endif %}>Gym</option>
+                            <option value="Boxer" {% if selected_mode=='Boxer' %}selected{% endif %}>Boxer</option>
+                        </select>
+
+                        <label>Gender:</label>
+                        <select name="gender">
+                            {% for gender in genders %}
+                                <option value="{{gender}}" {% if gender==selected_gender %}selected{% endif %}>{{gender}}</option>
+                            {% endfor %}
+                        </select>
+
+                        <label>Gym Location:</label>
+                        <select name="location">
+                            {% for location in locations %}
+                                <option value="{{location}}" {% if location==selected_location %}selected{% endif %}>{{location}}</option>
+                            {% endfor %}
+                        </select>
+                        {% if selected_gyms %}
+                        <div class="selected-gyms-note">
+                            {% for gym in selected_gyms %}
+                            <span class="pill pill-small">{{ gym }}</span>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="control-section">
+                        <h3>Entities</h3>
+                        {% if selected_mode == 'Gym' %}
+                            <label>Select Gym(s):</label>
+                            <div class="note">Hold Ctrl/Cmd to select multiple</div>
+                            <select name="gyms" multiple size="5">
+                                {% for gym in gyms %}
+                                    <option value="{{gym}}" {% if gym in selected_gyms %}selected{% endif %}>{{gym}}</option>
+                                {% endfor %}
+                            </select>
+                        {% else %}
+                            <div class="dual-selects">
+                                <div>
+                                    <label>Boxer A</label>
+                                    <select name="boxer_primary">
+                                        <option value="">Select boxer</option>
+                                        {% for boxer in boxers %}
+                                            <option value="{{boxer.value}}" {% if boxer.value == boxer_primary %}selected{% endif %}>{{boxer.display}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div>
+                                    <label>Boxer B</label>
+                                    <select name="boxer_secondary">
+                                        <option value="">Select boxer</option>
+                                        {% for boxer in boxers %}
+                                            <option value="{{boxer.value}}" {% if boxer.value == boxer_secondary %}selected{% endif %}>{{boxer.display}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            {% for gym in selected_gyms %}
+                                <input type="hidden" name="gyms" value="{{ gym }}">
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+
+                    <div class="control-section">
+                        <h3>Context</h3>
+                        <label>Year:</label>
+                        <select name="year">
+                            {% for y in years %}
+                                <option value="{{y}}" {% if y == selected_year %}selected{% endif %}>{{y}}</option>
+                            {% endfor %}
+                        </select>
+
+                        <label>Weight Class:</label>
+                        <select name="weight">
+                            {% for w in weights %}
+                                <option value="{{w}}" {% if w==selected_weight %}selected{% endif %}>{{w}}</option>
+                            {% endfor %}
+                        </select>
+
+                        <label>Diagram Type:</label>
+                        <select name="diagram">
+                            {% for d in diagram_types %}
+                                <option value="{{d}}" {% if d==selected_diagram %}selected{% endif %}>{{d}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </form>
+            </section>
+
+            <section id="comparison" class="comparison-panel">
+                <header class="section-header">
+                    <div>
+                        <h2>Comparison Corner</h2>
+                        <p>Explore {{ selected_mode.lower() }} performance with interactive charts and stats.</p>
+                    </div>
+                    <div class="pill-group">
+                        <span class="pill {% if selected_mode == 'Gym' %}active{% endif %}">Gyms</span>
+                        <span class="pill {% if selected_mode == 'Boxer' %}active{% endif %}">Boxers</span>
+                    </div>
+                </header>
+
+                <div class="comparison-grid">
+                    <div class="chart-panel">
+                        {% if selected_year == "All Years" %}
+                            <!-- <div class="info-banner">
+                                📊 Showing <strong>overall career performance</strong> across all years for selected {{ selected_mode.lower() }}{% if selected_boxers %}s{% endif %}.
+                            </div> -->
+                        {% endif %}
+                        <div class="chart-container">
+                            {{ graph_html | safe }}
+                        </div>
+                    </div>
+
+                    <div class="metric-panel card">
+                        <div class="kpi-cards compact horizontal">
+                            <div class="kpi-card">
+                                <p class="kpi-label">Total Boxers</p>
+                                <span class="kpi-value">{{ total_boxers }}</span>
+                                
+                            </div>
+                            <div class="kpi-card">
+                                     <p class="kpi-label">Total Gyms</p>
+                                <span class="kpi-value">{{ total_gyms }}</span>
+                           
+                            </div>
+                            <div class="kpi-card">
+                                  <p class="kpi-label">Locations</p>
+                                <span class="kpi-value">{{ total_locations }}</span>
+                              
+                            </div>
+                            <div class="kpi-card">
+                                 <p class="kpi-label">Total Fights</p>
+                                <span class="kpi-value">{{ total_fights }}</span>
+                               
+                            </div>
+                            <div class="kpi-card">
+                                 <p class="kpi-label">Avg Win Ratio</p>
+                                <span class="kpi-value">{{ avg_win_ratio }}%</span>
+                               
+                            </div>
+                            <div class="kpi-card">
+                                 <p class="kpi-label">Top Performer</p>
+                                <span class="kpi-value" style="font-size: 1.2em;">{{ top_performer }}</span>
+                               
+                            </div>
+                        </div>
+
+                        <div class="insight-pair">
+                            <div class="win-ratio card inner">
+                                <h3>Win Ratios</h3>
+                                {% if selected_year == "All Years" %}
+                                    <p><em>Overall Career Performance</em></p>
+                                {% else %}
+                                    <p><em>Year: {{ selected_year }}</em></p>
+                                {% endif %}
+                                {% if win_ratios %}
+                                    <ul>
+                                        {% for name, ratio in win_ratios.items() %}
+                                            <li>
+                                                <strong>{{ name }}</strong>: {{ "%.3f"|format(ratio) }} ({{ "%.1f"|format(ratio * 100) }}%)
+                                                {% if selected_mode == 'Boxer' %}
+                                                    {% set boxer_name = name.split('(')[0].strip() %}
+                                                    <button class="suggestion-btn-small" onclick="showSuggestions('boxer', '{{ boxer_name }}', '{{ selected_location }}')" title="Get improvement suggestions for {{ boxer_name }}">
+                                                         Suggestion to Improve💡
+                                                    </button>
+                                                {% endif %}
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                {% else %}
+                                    <p>No win ratio data available for current filters.</p>
+                                {% endif %}
+                            </div>
+<!-- 
+                            <div class="advanced-stats card inner">
+                                <h3>📈 Advanced Statistics</h3>
+                                <div class="stats-grid">
+                                    {% if advanced_stats.most_consistent %}
+                                    <div class="stat-item">
+                                        <div class="stat-label">Most Consistent</div>
+                                        <div class="stat-value">{{ advanced_stats.most_consistent }}</div>
+                                    </div>
+                                    {% endif %}
+                                    {% if advanced_stats.best_gym_volume %}
+                                    <div class="stat-item">
+                                        <div class="stat-label">Best Gym by Volume</div>
+                                        <div class="stat-value">{{ advanced_stats.best_gym_volume }}</div>
+                                    </div>
+                                    {% endif %}
+                                    {% if advanced_stats.highest_win_streak %}
+                                    <div class="stat-item">
+                                        <div class="stat-label">Highest Win Streak</div>
+                                        <div class="stat-value">{{ advanced_stats.highest_win_streak }} wins</div>
+                                    </div>
+                                    {% endif %}
+                                    {% if advanced_stats.best_location %}
+                                    <div class="stat-item">
+                                        <div class="stat-label">Best Location</div>
+                                        <div class="stat-value">{{ advanced_stats.best_location }}</div>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    
+    <div id="analysisModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Improvement Analysis</h2>
+            <div id="analysisContent"></div>
+        </div>
+    </div>
+
+    <div id="suggestionsModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeSuggestionsModal()">&times;</span>
+            <h2 id="suggestionsTitle">Improvement Suggestions</h2>
+            <div id="suggestionsContent">
+                <p>Loading suggestions...</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const VIEW_STORAGE_KEY = 'boxingDashboardView';
+
+        function exportData() {
+            const activeView = localStorage.getItem(VIEW_STORAGE_KEY) || 'recommendations';
+            const activeForm = document.querySelector(`.dashboard-view[data-view="${activeView}"] form`);
+            if (!activeForm) {
+                return;
+            }
+            const formData = new FormData(activeForm);
+            const params = new URLSearchParams();
+            
+            for (const [key, value] of formData.entries()) {
+                if (key === 'gyms' || key === 'boxers') {
+                    formData.getAll(key).forEach(val => params.append(key, val));
+                } else {
+                    params.append(key, value);
+                }
+            }
+            
+            window.open('/export_csv?' + params.toString(), '_blank');
+        }
+
+        async function handleFormChange(form) {
+            const viewContainer = form.closest('.view-container');
+            if (!viewContainer) {
+                return;
+            }
+
+            const isActive = viewContainer.classList.contains('active');
+            const formData = new FormData(form);
+
+            try {
+                const response = await fetch('/', {
+                    method: 'POST',
+                    body: formData,
+                    credentials: 'same-origin'
+                });
+
+                const html = await response.text();
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                const selector = `.view-container[data-view="${viewContainer.dataset.view}"]`;
+                const replacement = doc.querySelector(selector);
+
+                if (replacement) {
+                    if (isActive) {
+                        replacement.classList.add('active');
+                    } else {
+                        replacement.classList.remove('active');
+                    }
+                    viewContainer.replaceWith(replacement);
+                    activateEmbeddedScripts(replacement);
+                    initializeDashboardInteractions();
+                }
+            } catch (error) {
+                console.error('Error updating view:', error);
+            }
+        }
+
+        function activateEmbeddedScripts(scope) {
+            scope.querySelectorAll('script').forEach(oldScript => {
+                const newScript = document.createElement('script');
+                if (oldScript.src) {
+                    newScript.src = oldScript.src;
+                } else {
+                    newScript.textContent = oldScript.textContent;
+                }
+                Array.from(oldScript.attributes).forEach(attr => {
+                    newScript.setAttribute(attr.name, attr.value);
+                });
+                oldScript.parentNode.replaceChild(newScript, oldScript);
+            });
+        }
+
+        function attachFormHandlers() {
+            const forms = document.querySelectorAll('.dashboard-view form');
+            forms.forEach(form => {
+                if (form.dataset.handlersAttached === 'true') {
+                    return;
+                }
+                form.addEventListener('submit', event => {
+                    event.preventDefault();
+                    handleFormChange(form);
+                });
+
+                form.querySelectorAll('select').forEach(select => {
+                    select.addEventListener('change', () => handleFormChange(form));
+                });
+
+                form.dataset.handlersAttached = 'true';
+            });
+        }
+
+        function initializeDashboardInteractions() {
+            attachFormHandlers();
+            setupSearchableDropdowns();
+        }
+
+      
+        async function getImprovementAnalysis(location, gender) {
+            try {
+                const response = await fetch('/get_improvement_analysis', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        location: location,
+                        gender: gender
+                    })
+                });
+                
+                const analysis = await response.json();
+                displayAnalysisModal(analysis);
+            } catch (error) {
+                console.error('Error fetching analysis:', error);
+            }
+        }
+
+        
+        function displayAnalysisModal(analysis) {
+            const modal = document.getElementById('analysisModal');
+            const content = document.getElementById('analysisContent');
+            
+            let html = `<h3>Analysis for ${analysis.location}</h3>`;
+            html += `<p><strong>Total Gyms:</strong> ${analysis.total_gyms}</p>`;
+            html += `<p><strong>Total Boxers:</strong> ${analysis.total_boxers}</p>`;
+            
+            html += `<h4>Gym Analysis:</h4>`;
+            analysis.gym_analysis.forEach(gym => {
+                html += `<div class="gym-analysis">`;
+                html += `<h5>${gym.gym_name}</h5>`;
+                html += `<p>Win Ratio: ${(gym.win_ratio * 100).toFixed(1)}% | Boxers: ${gym.total_boxers}</p>`;
+                
+                if (gym.strengths.length > 0) {
+                    html += `<p><strong>Strengths:</strong> ${gym.strengths.join(', ')}</p>`;
+                }
+                
+                if (gym.weaknesses.length > 0) {
+                    html += `<p><strong>Areas for Improvement:</strong> ${gym.weaknesses.join(', ')}</p>`;
+                }
+                
+                if (gym.recommendations.length > 0) {
+                    html += `<p><strong>Recommendations:</strong> ${gym.recommendations.join(', ')}</p>`;
+                }
+                
+                html += `</div><hr>`;
+            });
+            
+            if (analysis.overall_recommendations.length > 0) {
+                html += `<h4>Overall Recommendations for ${analysis.location}:</h4>`;
+                html += `<ul>`;
+                analysis.overall_recommendations.forEach(rec => {
+                    html += `<li>${rec}</li>`;
+                });
+                html += `</ul>`;
+            }
+            
+            content.innerHTML = html;
+            modal.style.display = 'block';
+        }
+
+      
+        document.addEventListener('DOMContentLoaded', function() {
+            const modal = document.getElementById('analysisModal');
+            const span = document.getElementsByClassName('close')[0];
+            
+            if (span) {
+                span.onclick = function() {
+                    modal.style.display = 'none';
+                }
+            }
+            
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = 'none';
+                }
+                const suggestionsModal = document.getElementById('suggestionsModal');
+                if (event.target == suggestionsModal) {
+                    suggestionsModal.style.display = 'none';
+                }
+            }
+        });
+
+        async function showSuggestions(type, name, location) {
+            const modal = document.getElementById('suggestionsModal');
+            const title = document.getElementById('suggestionsTitle');
+            const content = document.getElementById('suggestionsContent');
+            
+            // Set title
+            if (type === 'gym') {
+                title.textContent = `Improvement Suggestions for ${name}`;
+            } else {
+                title.textContent = `Improvement Suggestions for ${name}`;
+            }
+            
+            // Show loading
+            content.innerHTML = '<p>Loading suggestions...</p>';
+            modal.style.display = 'block';
+            
+            try {
+                const response = await fetch('/get_suggestions', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        type: type,
+                        name: name,
+                        location: location
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (data.suggestions && data.suggestions.length > 0) {
+                    let html = '<ol class="suggestions-list">';
+                    data.suggestions.forEach((suggestion, index) => {
+                        html += `<li class="suggestion-item">${suggestion}</li>`;
+                    });
+                    html += '</ol>';
+                    content.innerHTML = html;
+                } else {
+                    content.innerHTML = '<p>No suggestions available at this time.</p>';
+                }
+            } catch (error) {
+                console.error('Error fetching suggestions:', error);
+                content.innerHTML = '<p>Error loading suggestions. Please try again later.</p>';
+            }
+        }
+
+        function closeSuggestionsModal() {
+            const modal = document.getElementById('suggestionsModal');
+            modal.style.display = 'none';
+        }
+
+        function setupSearchableDropdowns() {
+            const dropdowns = document.querySelectorAll('select[multiple]');
+            dropdowns.forEach(dropdown => {
+                if (dropdown.dataset.searchAttached === 'true') {
+                    return;
+                }
+                const originalOptions = Array.from(dropdown.options);
+                
+                const searchInput = document.createElement('input');
+                searchInput.type = 'text';
+                searchInput.placeholder = 'Search...';
+                searchInput.style.width = '100%';
+                searchInput.style.marginBottom = '5px';
+                searchInput.style.padding = '2px';
+                searchInput.classList.add('search-input');
+                
+                dropdown.parentNode.insertBefore(searchInput, dropdown);
+                
+                searchInput.addEventListener('input', function(e) {
+                    const searchTerm = e.target.value.toLowerCase();
+                    dropdown.innerHTML = '';
+                    
+                    originalOptions.forEach(option => {
+                        if (option.text.toLowerCase().includes(searchTerm)) {
+                            dropdown.appendChild(option.cloneNode(true));
+                        }
+                    });
+                });
+
+                dropdown.dataset.searchAttached = 'true';
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeDashboardInteractions();
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const viewTabs = document.querySelectorAll('.view-tab');
+
+            function setActiveView(view) {
+                const dashboardViews = document.querySelectorAll('.dashboard-view');
+                dashboardViews.forEach(section => {
+                    section.classList.toggle('active', section.dataset.view === view);
+                });
+                viewTabs.forEach(tab => {
+                    tab.classList.toggle('active', tab.dataset.view === view);
+                });
+                document.body.dataset.activeView = view;
+                localStorage.setItem(VIEW_STORAGE_KEY, view);
+            }
+
+            const savedView = localStorage.getItem(VIEW_STORAGE_KEY) || 'recommendations';
+            setActiveView(savedView);
+
+            viewTabs.forEach(tab => {
+                tab.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    setActiveView(tab.dataset.view);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
