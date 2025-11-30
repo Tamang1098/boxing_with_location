@@ -30,11 +30,11 @@
                 <p class="hero-eyebrow">Year 2020-2024 Overview</p>
                 <h1>🥊 Boxing Gym Recommendation in Kathmandu</h1>
                
-                <div class="hero-tags">
+                <!-- <div class="hero-tags">
                     <span class="pill">Mode: {{ selected_mode }}</span>
                     <span class="pill">Gender: {{ selected_gender }}</span>
                     <span class="pill">Focus: {{ selected_location }}</span>
-                </div>
+                </div> -->
             </div>
         </div>
     </header>
@@ -47,6 +47,9 @@
         <button type="button" class="view-tab" data-view="comparison">
             <span class="tab-title">Comparision Table (Gyms and Boxers)</span>
     
+        </button>
+        <button type="button" class="view-tab" data-view="ml-insights">
+            <span class="tab-title">🥊 Find Fair Opponents</span>
         </button>
     </div>
 
@@ -384,39 +387,48 @@
                                     <p>No win ratio data available for current filters.</p>
                                 {% endif %}
                             </div>
-<!-- 
-                            <div class="advanced-stats card inner">
-                                <h3>📈 Advanced Statistics</h3>
-                                <div class="stats-grid">
-                                    {% if advanced_stats.most_consistent %}
-                                    <div class="stat-item">
-                                        <div class="stat-label">Most Consistent</div>
-                                        <div class="stat-value">{{ advanced_stats.most_consistent }}</div>
-                                    </div>
-                                    {% endif %}
-                                    {% if advanced_stats.best_gym_volume %}
-                                    <div class="stat-item">
-                                        <div class="stat-label">Best Gym by Volume</div>
-                                        <div class="stat-value">{{ advanced_stats.best_gym_volume }}</div>
-                                    </div>
-                                    {% endif %}
-                                    {% if advanced_stats.highest_win_streak %}
-                                    <div class="stat-item">
-                                        <div class="stat-label">Highest Win Streak</div>
-                                        <div class="stat-value">{{ advanced_stats.highest_win_streak }} wins</div>
-                                    </div>
-                                    {% endif %}
-                                    {% if advanced_stats.best_location %}
-                                    <div class="stat-item">
-                                        <div class="stat-label">Best Location</div>
-                                        <div class="stat-value">{{ advanced_stats.best_location }}</div>
-                                    </div>
-                                    {% endif %}
-                                </div>
-                            </div> -->
                         </div>
                     </div>
                 </div>
+            </section>
+        </div>
+
+        <!-- ML Insights View -->
+        <div class="view-container dashboard-view" data-view="ml-insights">
+            <section class="ml-insights-panel">
+                <header class="section-header">
+                    <div>
+                        <h2>🥊 Find Fair Opponents</h2>
+                       
+                    </div>
+                </header>
+
+                <div class="ml-tabs">
+                   
+                    <button class="ml-tab" onclick="showMLTab('matches')">🥊 Find Opponents</button>
+                   
+                </div>
+                <!-- Fair Match Finder Tab -->
+                <div id="ml-matches" class="ml-tab-content">
+                    <div class="ml-section">
+                        <h3>🥊 Fair Match Finder</h3>
+                        <p style="color:black; margin-bottom: 20px;">
+                            Find balanced and fair opponents based on skill level, experience, and performance ratings.
+                        </p>
+                        <div class="ml-controls">
+                            <select id="boxer-select-match" style="padding: 10px; font-size: 16px; width: 300px;">
+                                <option value="">Select a boxer...</option>
+                                {% for boxer in boxers %}
+                                    <option value="{{ boxer.value }}">{{ boxer.display }}</option>
+                                {% endfor %}
+                            </select>
+                            <button onclick="findFairMatches()" class="ml-btn">🥊 Find Fair Matches</button>
+                        </div>
+                        <div id="matches-results" class="ml-results"></div>
+                    </div>
+                </div>
+
+
             </section>
         </div>
     </main>
@@ -739,7 +751,518 @@
                 });
             });
         });
+
+        // ML Features JavaScript
+        function showMLTab(tabName) {
+            // Hide all tab contents
+            document.querySelectorAll('.ml-tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Remove active from all tabs
+            document.querySelectorAll('.ml-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected tab content
+            document.getElementById(`ml-${tabName}`).classList.add('active');
+            
+            // Add active to clicked tab
+            if (event && event.target) {
+                event.target.classList.add('active');
+            }
+            
+            // If predictions tab is opened, check if boxer is selected and show stats
+            if (tabName === 'predictions') {
+                setTimeout(() => {
+                    const boxerSelect = document.getElementById('boxer-select-predict');
+                    if (boxerSelect && boxerSelect.value) {
+                        showBoxerStats();
+                    }
+                }, 200);
+            }
+        }
+
+        // Store original gym and boxer options on page load
+        let allGymOptions = [];
+        let allBoxerOptions = [];
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // Store original gym options
+            const gymSelect = document.getElementById('gym-select-predict');
+            if (gymSelect) {
+                allGymOptions = Array.from(gymSelect.options).map(opt => ({
+                    value: opt.value,
+                    text: opt.text,
+                    location: opt.getAttribute('data-location') || ''
+                }));
+            }
+            
+            // Store original boxer options with their gym, location, gender, and stats
+            const boxerSelect = document.getElementById('boxer-select-predict');
+            if (boxerSelect) {
+                allBoxerOptions = Array.from(boxerSelect.options).map(opt => ({
+                    value: opt.value,
+                    text: opt.text,
+                    gym: opt.getAttribute('data-gym') || '',
+                    location: opt.getAttribute('data-location') || '',
+                    gender: opt.getAttribute('data-gender') || '',
+                    wins: parseInt(opt.getAttribute('data-wins') || '0'),
+                    losses: parseInt(opt.getAttribute('data-losses') || '0'),
+                    fights: parseInt(opt.getAttribute('data-fights') || '0'),
+                    winRatio: parseFloat(opt.getAttribute('data-win-ratio') || '0')
+                }));
+                
+                // Initialize auto-predict on page load
+                setTimeout(() => {
+                    filterGymsByLocation();
+                    autoPredict2025();
+                }, 500);
+            }
+        });
+
+        // Show boxer stats when boxer is selected
+        function showBoxerStats() {
+            const boxerSelect = document.getElementById('boxer-select-predict');
+            const statsPreview = document.getElementById('boxer-stats-preview');
+            
+            if (!boxerSelect || !statsPreview) {
+                return;
+            }
+            
+            const selectedValue = boxerSelect.value;
+            
+            if (!selectedValue) {
+                statsPreview.style.display = 'none';
+                return;
+            }
+            
+            const selectedOption = boxerSelect.options[boxerSelect.selectedIndex];
+            if (!selectedOption) {
+                statsPreview.style.display = 'none';
+                return;
+            }
+            
+            const wins = parseInt(selectedOption.getAttribute('data-wins') || '0');
+            const losses = parseInt(selectedOption.getAttribute('data-losses') || '0');
+            const fights = parseInt(selectedOption.getAttribute('data-fights') || '0');
+            const winRatio = parseFloat(selectedOption.getAttribute('data-win-ratio') || '0');
+            
+            // Update stats display
+            const previewFights = document.getElementById('preview-total-fights');
+            const previewWins = document.getElementById('preview-total-wins');
+            const previewLosses = document.getElementById('preview-total-losses');
+            const previewRatio = document.getElementById('preview-win-ratio');
+            
+            if (previewFights) previewFights.textContent = fights;
+            if (previewWins) previewWins.textContent = wins;
+            if (previewLosses) previewLosses.textContent = losses;
+            if (previewRatio) previewRatio.textContent = (winRatio * 100).toFixed(1) + '%';
+            
+            // Show stats preview
+            statsPreview.style.display = 'block';
+        }
+
+        // Toggle filters based on mode
+        function togglePredictFilters() {
+            const modeSelect = document.getElementById('mode-select-predict');
+            const gymModeFilters = document.getElementById('gym-mode-filters');
+            const boxerModeFilters = document.getElementById('boxer-mode-filters');
+            const mode = modeSelect.value;
+            
+            if (mode === 'Gym') {
+                gymModeFilters.style.display = 'block';
+                boxerModeFilters.style.display = 'none';
+            } else {
+                gymModeFilters.style.display = 'none';
+                boxerModeFilters.style.display = 'block';
+            }
+            
+            // Reset filters and refilter
+            document.getElementById('boxer-select-predict').value = '';
+            if (mode === 'Gym') {
+                filterBoxersByGymForPredict();
+            } else {
+                filterBoxersForPredict();
+            }
+        }
+
+        // Filter boxers by gym for Gym mode
+        function filterBoxersByGymForPredict() {
+            const locationSelect = document.getElementById('gym-location-select-predict');
+            const gymSelect = document.getElementById('gym-select-predict-mode');
+            const boxerSelect = document.getElementById('boxer-select-predict');
+            const selectedLocation = locationSelect.value;
+            const selectedGym = gymSelect.value;
+            
+            // Get unique gyms from boxers data for the selected location
+            const locationGyms = new Set();
+            allBoxerOptions.forEach(boxer => {
+                if (boxer.location === selectedLocation || !selectedLocation) {
+                    if (boxer.gym) {
+                        locationGyms.add(boxer.gym);
+                    }
+                }
+            });
+            
+            // Populate gyms dropdown
+            gymSelect.innerHTML = '<option value="">All Gyms</option>';
+            Array.from(locationGyms).sort().forEach(gymName => {
+                const option = document.createElement('option');
+                option.value = gymName;
+                option.text = gymName;
+                option.setAttribute('data-location', selectedLocation);
+                gymSelect.appendChild(option);
+            });
+            
+            // Filter boxers
+            filterBoxersForPredict();
+        }
+
+        // Filter gym boxers for Gym mode
+        function filterGymBoxersForPredict() {
+            filterBoxersByGymForPredict();
+        }
+
+        // Filter gyms and boxers based on location for prediction
+        function filterGymsAndBoxersForPredict() {
+            const locationSelect = document.getElementById('location-select-predict');
+            const gymSelect = document.getElementById('gym-select-predict');
+            const boxerSelect = document.getElementById('boxer-select-predict');
+            const selectedLocation = locationSelect.value;
+            
+            // Get unique gyms from boxers data for the selected location
+            const locationGyms = new Set();
+            allBoxerOptions.forEach(boxer => {
+                if (boxer.location === selectedLocation || !selectedLocation) {
+                    if (boxer.gym) {
+                        locationGyms.add(boxer.gym);
+                    }
+                }
+            });
+            
+            // Populate gyms dropdown
+            gymSelect.innerHTML = '<option value="">All Gyms</option>';
+            Array.from(locationGyms).sort().forEach(gymName => {
+                const option = document.createElement('option');
+                option.value = gymName;
+                option.text = gymName;
+                option.setAttribute('data-location', selectedLocation);
+                gymSelect.appendChild(option);
+            });
+            
+            // Reset gym selection
+            gymSelect.value = '';
+            
+            // Filter boxers
+            filterBoxersForPredict();
+        }
+
+        // Filter boxers based on location, gym, and gender
+        function filterBoxersForPredict() {
+            const locationSelect = document.getElementById('location-select-predict');
+            const gymSelect = document.getElementById('gym-select-predict');
+            const genderSelect = document.getElementById('gender-select-predict');
+            const boxerSelect = document.getElementById('boxer-select-predict');
+            
+            const selectedLocation = locationSelect ? locationSelect.value : '';
+            const selectedGym = gymSelect ? gymSelect.value : '';
+            const selectedGender = genderSelect ? genderSelect.value : 'Both';
+            
+            // Filter boxers
+            boxerSelect.innerHTML = '<option value="">Select a boxer...</option>';
+            
+            allBoxerOptions.forEach(boxer => {
+                // Filter by location
+                let locationMatch = !selectedLocation || boxer.location === selectedLocation;
+                
+                // Filter by gym
+                let gymMatch = !selectedGym || boxer.gym === selectedGym;
+                
+                // Filter by gender
+                let genderMatch = selectedGender === 'Both' || boxer.gender === selectedGender;
+                
+                if (locationMatch && gymMatch && genderMatch) {
+                    const option = document.createElement('option');
+                    option.value = boxer.value;
+                    option.text = boxer.text;
+                    option.setAttribute('data-gym', boxer.gym);
+                    option.setAttribute('data-location', boxer.location);
+                    option.setAttribute('data-gender', boxer.gender);
+                    boxerSelect.appendChild(option);
+                }
+            });
+        }
+
+        // Toggle Mode (Gym/Boxer)
+        function togglePredictMode() {
+            const mode = document.getElementById('mode-select-predict').value;
+            const gymContainer = document.getElementById('gym-filter-container');
+            const genderContainer = document.getElementById('gender-filter-container');
+            const boxerContainer = document.getElementById('boxer-filter-container');
+            
+            if (mode === 'Gym') {
+                // Gym mode: Hide gender and boxer
+                genderContainer.style.display = 'none';
+                boxerContainer.style.display = 'none';
+                gymContainer.style.display = 'block';
+            } else {
+                // Boxer mode: Show all
+                genderContainer.style.display = 'block';
+                boxerContainer.style.display = 'block';
+                gymContainer.style.display = 'block';
+            }
+            
+            // Clear results and auto-predict
+            document.getElementById('prediction-results').innerHTML = '';
+            autoPredict2025();
+        }
+
+        // Auto-predict when selections change
+        function autoPredict2025() {
+            const mode = document.getElementById('mode-select-predict').value;
+            const boxerSelect = document.getElementById('boxer-select-predict');
+            const gymSelect = document.getElementById('gym-select-predict');
+            const locationSelect = document.getElementById('location-select-predict');
+            
+            // Auto-update gyms based on location
+            filterGymsByLocation();
+            
+            // Auto-predict if boxer/gym is selected
+            if (mode === 'Boxer' && boxerSelect.value) {
+                predict2025WinRatio();
+            } else if (mode === 'Gym' && gymSelect.value && locationSelect.value) {
+                predictGym2025WinRatio();
+            } else {
+                document.getElementById('prediction-results').innerHTML = '';
+            }
+        }
+
+        // Filter gyms by location
+        function filterGymsByLocation() {
+            const locationSelect = document.getElementById('location-select-predict');
+            const gymSelect = document.getElementById('gym-select-predict');
+            const selectedLocation = locationSelect.value;
+            
+            // Get unique gyms from selected location using stored boxer options
+            const locationGyms = new Set();
+            allBoxerOptions.forEach(boxer => {
+                if ((!selectedLocation || boxer.location === selectedLocation) && boxer.gym) {
+                    locationGyms.add(boxer.gym);
+                }
+            });
+            
+            // Update gym dropdown
+            gymSelect.innerHTML = '<option value="">All Gyms</option>';
+            Array.from(locationGyms).sort().forEach(gymName => {
+                const option = document.createElement('option');
+                option.value = gymName;
+                option.text = gymName;
+                option.setAttribute('data-location', selectedLocation);
+                gymSelect.appendChild(option);
+            });
+        }
+          
+        // Fair Match Finder
+        async function findFairMatches() {
+            const boxerName = document.getElementById('boxer-select-match').value;
+            if (!boxerName) {
+                alert('Please select a boxer');
+                return;
+            }
+            
+            const resultsDiv = document.getElementById('matches-results');
+            resultsDiv.innerHTML = '<p>🥊 Finding fair matches...</p>';
+            
+            try {
+                const response = await fetch('/find_fair_matches', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({boxer_name: boxerName, top_k: 5})
+                });
+                
+                const data = await response.json();
+                
+                if (data.error) {
+                    resultsDiv.innerHTML = `<p class="error">❌ ${data.error}</p>`;
+                    return;
+                }
+                
+                let html = `<h4>🥊 Fair Matches for ${data.boxer_name}</h4>`;
+                html += '<div class="recommendation-list">';
+                
+                if (data.matches && data.matches.length > 0) {
+                    data.matches.forEach((match, idx) => {
+                        const matchColor = match.match_type.includes('Fair') ? '#27ae60' : 
+                                          match.match_type.includes('Challenging') ? '#e74c3c' : '#f39c12';
+                        
+                        html += `<div class="recommendation-card" style="border-left-color: ${matchColor};">`;
+                        html += `<div class="rank-badge" style="background: ${matchColor};">#${idx + 1}</div>`;
+                        html += `<h5>${match.opponent_name}</h5>`;
+                        html += `<p><strong>Match Type:</strong> <span style="color: ${matchColor}; font-weight: bold;">${match.match_type}</span></p>`;
+                        html += `<p><strong>Your Rating:</strong> ${match.your_rating.toFixed(1)} | <strong>Opponent:</strong> ${match.opponent_rating.toFixed(1)}</p>`;
+                        html += `<p><strong>Opponent Win Ratio:</strong> ${(match.opponent_win_ratio * 100).toFixed(1)}% | <strong>Fights:</strong> ${match.opponent_total_fights}</p>`;
+                        html += `<p><strong>Gym:</strong> ${match.gym} | <strong>Location:</strong> ${match.location}</p>`;
+                        html += `<p><strong>Match Score:</strong> ${match.match_score.toFixed(1)}/100</p>`;
+                        html += `</div>`;
+                    });
+                } else {
+                    html += '<p>No suitable matches found.</p>';
+                }
+                
+                html += '</div>';
+                resultsDiv.innerHTML = html;
+            } catch (error) {
+                resultsDiv.innerHTML = `<p class="error">❌ Error: ${error.message}</p>`;
+            }
+        }
     </script>
+    
+    <style>
+        .ml-insights-panel {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .ml-tabs {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+            border-bottom: 2px solid #ddd;
+        }
+        .ml-tab {
+            padding: 10px 20px;
+            background:black;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+            border-radius: 10px;
+        }
+        .ml-tab:hover {
+            background: #e74c3c;
+        }
+        .ml-tab.active {
+            border-bottom-color: #e74c3c;
+             background: #e74c3c;
+            font-weight: bold;
+            color: white;
+        }
+        .ml-tab-content {
+            display: none;
+            padding: 20px 0;
+        }
+        .ml-tab-content.active {
+            display: block;
+        }
+        .ml-section {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .ml-filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .ml-filter-item {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .ml-filter-item label {
+            font-weight: bold;
+            color: #333;
+            font-size: 14px;
+        }
+        .ml-controls {
+            display: flex;
+            gap: 10px;
+            margin: 15px 0;
+            align-items: center;
+        }
+        .ml-btn {
+            padding: 10px 20px;
+            background: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+        .ml-btn:hover {
+            background: #c0392b;
+        }
+        .ml-results {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f9f9f9;
+            border-radius: 5px;
+            min-height: 100px;
+        }
+        .prediction-card, .recommendation-card, .summary-card {
+            background: white;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border-left: 4px solid #e74c3c;
+        }
+        .anomaly-item {
+            background: #fff5f5;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border-left: 4px solid #e74c3c;
+            box-shadow: 0 2px 4px rgba(231, 76, 60, 0.1);
+        }
+        .anomaly-item:hover {
+            background: #ffe5e5;
+            box-shadow: 0 3px 6px rgba(231, 76, 60, 0.2);
+        }
+        .prediction-card h4, .recommendation-card h5 {
+            margin-top: 0;
+            color: #e74c3c;
+        }
+        .future-prediction {
+            margin-top: 15px;
+            padding: 15px;
+            background: #fff3cd;
+            border-radius: 5px;
+        }
+        .anomaly-list, .recommendation-list, .predicted-list {
+            display:flex;
+            width:fit-content;
+            gap: 10px;
+        }
+        .recommendation-card {
+            position: relative;
+            padding-left: 50px;
+        }
+        .rank-badge {
+            position: absolute;
+            left: 10px;
+            top: 10px;
+            background: #e74c3c;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        .error {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+    </style>
 </body>
 </html>
 

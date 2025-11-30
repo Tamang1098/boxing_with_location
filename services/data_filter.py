@@ -56,9 +56,24 @@ class DataFilter:
         available_boxers = []
         for boxer_name in sorted(boxer_data['Boxer_Name'].unique()):
             boxer_info = boxer_data[boxer_data['Boxer_Name'] == boxer_name].iloc[0]
+            
+            # Calculate total stats for this boxer
+            boxer_all_data = boxer_data[boxer_data['Boxer_Name'] == boxer_name]
+            total_wins = boxer_all_data['Wins'].sum()
+            total_losses = boxer_all_data['Losses'].sum()
+            total_fights = total_wins + total_losses
+            win_ratio = total_wins / total_fights if total_fights > 0 else 0
+            
             available_boxers.append({
                 'value': boxer_name,
-                'display': f"{boxer_name} ({boxer_info['Gym']}, {boxer_info['Location']})"
+                'display': f"{boxer_name} ({boxer_info['Gym']}, {boxer_info['Location']})",
+                'gym': boxer_info['Gym'],
+                'location': boxer_info['Location'],
+                'gender': boxer_info.get('Gender', ''),
+                'total_wins': int(total_wins),
+                'total_losses': int(total_losses),
+                'total_fights': int(total_fights),
+                'win_ratio': float(win_ratio)
             })
         
         return available_boxers
