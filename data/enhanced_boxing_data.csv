@@ -1,0 +1,289 @@
+Location,Gym,Boxer_Name,Gender,Age,Weight_Class,Wins,Losses,Year
+Boudha,Boxmandu,Aarav Shrestha,Male,22,Welterweight,8,2,2023
+Boudha,Boxmandu,Bikash Chaudhary,Male,25,Heavyweight,5,5,2021
+Boudha,Boxmandu,Samir Thapa,Male,19,Featherweight,10,0,2024
+Boudha,Boxmandu,Rajan Karki,Male,28,Middleweight,7,3,2020
+Boudha,Boxmandu,Niraj Ghale,Male,23,Lightweight,3,7,2022
+Boudha,Boxmandu,Ojaswi Basnet,Male,30,Bantamweight,9,1,2021
+Boudha,Boxmandu,Anjali Rai,Female,21,Flyweight,9,1,2024
+Boudha,Boxmandu,Bina Magar,Female,24,Lightweight,6,4,2022
+Boudha,Boxmandu,Chandra Limbu,Female,20,Bantamweight,4,6,2020
+Boudha,Boxmandu,Deepa Gurung,Female,26,Welterweight,8,2,2023
+Boudha,Boxmandu,Elina Shrestha,Female,22,Featherweight,7,3,2021
+Boudha,Boxmandu,Fulmaya Waiba,Female,19,Middleweight,1,9,2022
+Boudha,H2O Athletics Boxing Gym,Prashant Tamang,Male,21,Middleweight,5,5,2024
+Boudha,H2O Athletics Boxing Gym,Qasim Sheikh,Male,27,Featherweight,2,8,2020
+Boudha,H2O Athletics Boxing Gym,Ramesh Singh,Male,24,Bantamweight,6,4,2023
+Boudha,H2O Athletics Boxing Gym,Sandeep Rana,Male,18,Welterweight,0,10,2021
+Boudha,H2O Athletics Boxing Gym,Tenzin Sherpa,Male,26,Lightweight,8,2,2022
+Boudha,H2O Athletics Boxing Gym,Uttam K.C.,Male,29,Heavyweight,4,6,2020
+Boudha,H2O Athletics Boxing Gym,Gita Thapa,Female,25,Heavyweight,10,0,2024
+Boudha,H2O Athletics Boxing Gym,Hema Chhetri,Female,29,Flyweight,5,5,2023
+Boudha,H2O Athletics Boxing Gym,Isha Koirala,Female,23,Welterweight,3,7,2021
+Boudha,H2O Athletics Boxing Gym,Jyoti Pradhan,Female,20,Bantamweight,9,1,2022
+Boudha,H2O Athletics Boxing Gym,Kabita Sen,Female,27,Featherweight,5,5,2020
+Boudha,H2O Athletics Boxing Gym,Laxmi Bhandari,Female,24,Lightweight,7,3,2023
+Boudha,OG Boxing Gym,Victor Poudel,Male,25,Featherweight,10,0,2021
+Boudha,OG Boxing Gym,Wesley Rana,Male,22,Heavyweight,7,3,2024
+Boudha,OG Boxing Gym,Xavier Thapa,Male,20,Bantamweight,1,9,2022
+Boudha,OG Boxing Gym,Yogesh Dangol,Male,27,Welterweight,6,4,2020
+Boudha,OG Boxing Gym,Amrit Joshi,Male,23,Middleweight,5,5,2023
+Boudha,OG Boxing Gym,Bishal Gurung,Male,30,Lightweight,9,1,2022
+Boudha,OG Boxing Gym,Mina Ghale,Female,21,Flyweight,8,2,2021
+Boudha,OG Boxing Gym,Nisha Adhikari,Female,26,Middleweight,4,6,2024
+Boudha,OG Boxing Gym,Oshin Rai,Female,19,Lightweight,2,8,2020
+Boudha,OG Boxing Gym,Priya Bista,Female,28,Welterweight,9,1,2023
+Boudha,OG Boxing Gym,Rashmi Tuladhar,Female,22,Bantamweight,8,2,2022
+Boudha,OG Boxing Gym,Sabita Karki,Female,24,Featherweight,6,4,2021
+Boudha,Fight Club Nepal,Cheten Dorje,Male,19,Welterweight,3,7,2024
+Boudha,Fight Club Nepal,Dawa Sherpa,Male,25,Heavyweight,7,3,2020
+Boudha,Fight Club Nepal,Gopal Yadav,Male,21,Bantamweight,2,8,2023
+Boudha,Fight Club Nepal,Hari Phuyal,Male,28,Lightweight,8,2,2022
+Boudha,Fight Club Nepal,Ishan Chhetri,Male,24,Featherweight,5,5,2021
+Boudha,Fight Club Nepal,Jivan Thakuri,Male,26,Middleweight,1,9,2023
+Boudha,Fight Club Nepal,Tara Shrestha,Female,20,Heavyweight,10,0,2024
+Boudha,Fight Club Nepal,Usha Maharjan,Female,27,Flyweight,4,6,2020
+Boudha,Fight Club Nepal,Varsha Rai,Female,19,Welterweight,7,3,2022
+Boudha,Fight Club Nepal,Yashoda B.K.,Female,23,Bantamweight,9,1,2021
+Boudha,Fight Club Nepal,Zara Tamang,Female,25,Featherweight,3,7,2023
+Boudha,Fight Club Nepal,Anuradha Shrestha,Female,29,Lightweight,5,5,2022
+Swayambhu,Sweet Science Boxing Gym,Karan Rana,Male,22,Heavyweight,10,0,2023
+Swayambhu,Sweet Science Boxing Gym,Lalit Bajracharya,Male,19,Lightweight,4,6,2021
+Swayambhu,Sweet Science Boxing Gym,Manoj Sapkota,Male,30,Bantamweight,6,4,2024
+Swayambhu,Sweet Science Boxing Gym,Nabin K.C.,Male,27,Featherweight,8,2,2020
+Swayambhu,Sweet Science Boxing Gym,Omkar Shrestha,Male,25,Welterweight,7,3,2022
+Swayambhu,Sweet Science Boxing Gym,Prakash Tiwari,Male,23,Middleweight,9,1,2021
+Swayambhu,Sweet Science Boxing Gym,Bhumika Shilpakar,Female,21,Flyweight,1,9,2023
+Swayambhu,Sweet Science Boxing Gym,Chandani Shakya,Female,26,Welterweight,9,1,2024
+Swayambhu,Sweet Science Boxing Gym,Dikshya Mahat,Female,20,Bantamweight,7,3,2020
+Swayambhu,Sweet Science Boxing Gym,Esha Dangol,Female,24,Heavyweight,2,8,2022
+Swayambhu,Sweet Science Boxing Gym,Falguni Singh,Female,22,Lightweight,8,2,2021
+Swayambhu,Sweet Science Boxing Gym,Ganga Waiba,Female,29,Featherweight,4,6,2023
+Swayambhu,Rage Fitness Boxing,Quincy Rai,Male,20,Middleweight,5,5,2024
+Swayambhu,Rage Fitness Boxing,Rabin Thapa,Male,28,Welterweight,3,7,2020
+Swayambhu,Rage Fitness Boxing,Sajan Bhujel,Male,24,Bantamweight,6,4,2022
+Swayambhu,Rage Fitness Boxing,Tilak Thapa,Male,21,Featherweight,2,8,2023
+Swayambhu,Rage Fitness Boxing,Unish Rai,Male,29,Lightweight,8,2,2021
+Swayambhu,Rage Fitness Boxing,Vikas Magar,Male,26,Heavyweight,10,0,2024
+Swayambhu,Rage Fitness Boxing,Hiralal Chhetri,Female,18,Flyweight,10,0,2020
+Swayambhu,Rage Fitness Boxing,Indira Poudel,Female,25,Middleweight,6,4,2022
+Swayambhu,Rage Fitness Boxing,Jenisha Rai,Female,20,Welterweight,5,5,2023
+Swayambhu,Rage Fitness Boxing,Karishma K.C.,Female,23,Lightweight,9,1,2021
+Swayambhu,Rage Fitness Boxing,Luna Gurung,Female,27,Bantamweight,7,3,2024
+Swayambhu,Rage Fitness Boxing,Manita Shrestha,Female,25,Featherweight,3,7,2020
+Swayambhu,Vibe Boxing,Winston Chhetri,Male,22,Welterweight,9,1,2022
+Swayambhu,Vibe Boxing,Xander Rana,Male,30,Middleweight,5,5,2023
+Swayambhu,Vibe Boxing,Yubraj Dhami,Male,19,Heavyweight,1,9,2021
+Swayambhu,Vibe Boxing,Zorawar Basnet,Male,27,Lightweight,7,3,2024
+Swayambhu,Vibe Boxing,Alok Verma,Male,25,Bantamweight,4,6,2020
+Swayambhu,Vibe Boxing,Bibek Thakur,Male,23,Featherweight,8,2,2022
+Swayambhu,Vibe Boxing,Nabina Thapa,Female,24,Flyweight,4,6,2023
+Swayambhu,Vibe Boxing,Ojaswi Bhattarai,Female,21,Heavyweight,8,2,2021
+Swayambhu,Vibe Boxing,Prabha Adhikari,Female,28,Lightweight,6,4,2024
+Swayambhu,Vibe Boxing,Queena Limbu,Female,26,Middleweight,10,0,2020
+Swayambhu,Vibe Boxing,Rachana Pradhan,Female,22,Welterweight,9,1,2022
+Swayambhu,Vibe Boxing,Sarita Karki,Female,29,Bantamweight,7,3,2023
+Swayambhu,Lock n Roll MMA & Boxing,Cyrus Ghale,Male,20,Bantamweight,3,7,2021
+Swayambhu,Lock n Roll MMA & Boxing,Deep Singh,Male,28,Featherweight,5,5,2024
+Swayambhu,Lock n Roll MMA & Boxing,Eshan Karki,Male,26,Welterweight,10,0,2020
+Swayambhu,Lock n Roll MMA & Boxing,Farid Sheikh,Male,21,Lightweight,6,4,2022
+Swayambhu,Lock n Roll MMA & Boxing,Ganesh Tamang,Male,29,Heavyweight,2,8,2023
+Swayambhu,Lock n Roll MMA & Boxing,Hemant Rana,Male,24,Middleweight,8,2,2021
+Swayambhu,Lock n Roll MMA & Boxing,Shanti Waiba,Female,27,Featherweight,5,5,2024
+Swayambhu,Lock n Roll MMA & Boxing,Tripti Basnet,Female,20,Flyweight,7,3,2020
+Swayambhu,Lock n Roll MMA & Boxing,Vanita Gurung,Female,23,Welterweight,9,1,2022
+Swayambhu,Lock n Roll MMA & Boxing,Wendy Rai,Female,25,Bantamweight,4,6,2023
+Swayambhu,Lock n Roll MMA & Boxing,Tejaswini Rana,Female,19,Lightweight,2,8,2021
+Swayambhu,Lock n Roll MMA & Boxing,Urvashi Chauhan,Female,24,Heavyweight,1,9,2024
+Budanilkantha,Banu Fitness Boxing Section,Ishan Khadka,Male,22,Middleweight,7,3,2023
+Budanilkantha,Banu Fitness Boxing Section,Jeevan Shrestha,Male,27,Heavyweight,5,5,2021
+Budanilkantha,Banu Fitness Boxing Section,Kabir Thapa,Male,19,Welterweight,9,1,2024
+Budanilkantha,Banu Fitness Boxing Section,Lokesh Bhandari,Male,30,Featherweight,3,7,2020
+Budanilkantha,Banu Fitness Boxing Section,Mukesh Yadav,Male,23,Bantamweight,1,9,2022
+Budanilkantha,Banu Fitness Boxing Section,Niraj K.C.,Male,26,Lightweight,8,2,2023
+Budanilkantha,Banu Fitness Boxing Section,Aahana Bista,Female,24,Lightweight,8,2,2021
+Budanilkantha,Banu Fitness Boxing Section,Babita Ghale,Female,21,Heavyweight,6,4,2024
+Budanilkantha,Banu Fitness Boxing Section,Chhaya Limbu,Female,28,Middleweight,10,0,2020
+Budanilkantha,Banu Fitness Boxing Section,Divya Poudel,Female,25,Welterweight,4,6,2022
+Budanilkantha,Banu Fitness Boxing Section,Ekanta Maharjan,Female,22,Featherweight,2,8,2023
+Budanilkantha,Banu Fitness Boxing Section,Faiza Rai,Female,24,Bantamweight,9,1,2021
+Budanilkantha,Tap Out Fitness Boxing,Omar Chhetri,Male,20,Featherweight,5,5,2024
+Budanilkantha,Tap Out Fitness Boxing,Pranav Thapa,Male,29,Bantamweight,7,3,2020
+Budanilkantha,Tap Out Fitness Boxing,Quinton Basnet,Male,25,Lightweight,10,0,2022
+Budanilkantha,Tap Out Fitness Boxing,Rahul Dangol,Male,22,Heavyweight,6,4,2023
+Budanilkantha,Tap Out Fitness Boxing,Sameer Gurung,Male,28,Welterweight,4,6,2021
+Budanilkantha,Tap Out Fitness Boxing,Tarakant Jha,Male,21,Middleweight,8,2,2024
+Budanilkantha,Tap Out Fitness Boxing,Gauri Singh,Female,19,Flyweight,3,7,2020
+Budanilkantha,Tap Out Fitness Boxing,Harpreet Kaur,Female,27,Welterweight,5,5,2022
+Budanilkantha,Tap Out Fitness Boxing,Ishwari Shilpakar,Female,23,Bantamweight,7,3,2023
+Budanilkantha,Tap Out Fitness Boxing,Jyotsna Karki,Female,30,Featherweight,5,5,2021
+Budanilkantha,Tap Out Fitness Boxing,Kriti Bajracharya,Female,18,Lightweight,1,9,2024
+Budanilkantha,Tap Out Fitness Boxing,Lalita Thakuri,Female,26,Heavyweight,9,1,2020
+Budanilkantha,Boxing League Nepal,Ujwal Bhujel,Male,24,Welterweight,2,8,2021
+Budanilkantha,Boxing League Nepal,Vijay Rana,Male,31,Middleweight,7,3,2024
+Budanilkantha,Boxing League Nepal,Wasim Ahmed,Male,20,Heavyweight,5,5,2022
+Budanilkantha,Boxing League Nepal,Yagya Poudel,Male,27,Lightweight,3,7,2020
+Budanilkantha,Boxing League Nepal,Anup Thapa,Male,26,Bantamweight,9,1,2023
+Budanilkantha,Boxing League Nepal,Bharat Gurung,Male,23,Featherweight,5,5,2021
+Budanilkantha,Boxing League Nepal,Monika Adhikari,Female,25,Flyweight,8,2,2024
+Budanilkantha,Boxing League Nepal,Nabina Chhetri,Female,22,Middleweight,4,6,2022
+Budanilkantha,Boxing League Nepal,Oshima Rai,Female,29,Welterweight,10,0,2020
+Budanilkantha,Boxing League Nepal,Priyanka B.K.,Female,23,Lightweight,6,4,2023
+Budanilkantha,Boxing League Nepal,Rajani Ghale,Female,21,Bantamweight,8,2,2021
+Budanilkantha,Boxing League Nepal,Sangita K.C.,Female,25,Heavyweight,6,4,2024
+Budanilkantha,Champion Boxing Academy Nepal,Chintan Rai,Male,20,Lightweight,1,9,2022
+Budanilkantha,Champion Boxing Academy Nepal,Dinesh Shrestha,Male,28,Bantamweight,7,3,2023
+Budanilkantha,Champion Boxing Academy Nepal,Girish Yadav,Male,22,Heavyweight,3,7,2020
+Budanilkantha,Champion Boxing Academy Nepal,Hariom Chhetri,Male,29,Welterweight,8,2,2024
+Budanilkantha,Champion Boxing Academy Nepal,Indra Bhandari,Male,24,Featherweight,5,5,2021
+Budanilkantha,Champion Boxing Academy Nepal,Jagat Thakuri,Male,26,Middleweight,2,8,2022
+Budanilkantha,Champion Boxing Academy Nepal,Tara Devi,Female,19,Flyweight,10,0,2023
+Budanilkantha,Champion Boxing Academy Nepal,Urmila Shrestha,Female,27,Featherweight,4,6,2020
+Budanilkantha,Champion Boxing Academy Nepal,Vaishali Mahat,Female,20,Welterweight,9,1,2024
+Budanilkantha,Champion Boxing Academy Nepal,Yamuna Waiba,Female,23,Bantamweight,7,3,2021
+Budanilkantha,Champion Boxing Academy Nepal,Zara Bhujel,Female,30,Lightweight,5,5,2022
+Budanilkantha,Champion Boxing Academy Nepal,Anjusha Dangol,Female,28,Heavyweight,1,9,2023
+Baluwatar,Elite Boxing Club Kathmandu,Kaivan Sapkota,Male,25,Heavyweight,10,0,2021
+Baluwatar,Elite Boxing Club Kathmandu,Lalbin Rana,Male,21,Middleweight,6,4,2024
+Baluwatar,Elite Boxing Club Kathmandu,Manish Karki,Male,30,Welterweight,4,6,2020
+Baluwatar,Elite Boxing Club Kathmandu,Nawaraj Ghale,Male,27,Featherweight,8,2,2022
+Baluwatar,Elite Boxing Club Kathmandu,Om Thapa,Male,23,Lightweight,7,3,2023
+Baluwatar,Elite Boxing Club Kathmandu,Prabin Chhetri,Male,28,Bantamweight,9,1,2021
+Baluwatar,Elite Boxing Club Kathmandu,Bidhya Pradhan,Female,22,Bantamweight,2,8,2024
+Baluwatar,Elite Boxing Club Kathmandu,Champa Devi,Female,24,Heavyweight,7,3,2020
+Baluwatar,Elite Boxing Club Kathmandu,Damini Singh,Female,19,Middleweight,5,5,2022
+Baluwatar,Elite Boxing Club Kathmandu,Ekta Shrestha,Female,26,Welterweight,3,7,2023
+Baluwatar,Elite Boxing Club Kathmandu,Fulmati Koirala,Female,27,Featherweight,8,2,2021
+Baluwatar,Elite Boxing Club Kathmandu,Gaura Singh,Female,21,Lightweight,4,6,2024
+Baluwatar,ProBox Kathmandu,Qasim Ali,Male,20,Featherweight,5,5,2022
+Baluwatar,ProBox Kathmandu,Rohan Dhami,Male,25,Bantamweight,1,9,2023
+Baluwatar,ProBox Kathmandu,Saroj Basnet,Male,24,Lightweight,6,4,2020
+Baluwatar,ProBox Kathmandu,Tika Ram,Male,21,Heavyweight,2,8,2024
+Baluwatar,ProBox Kathmandu,Upendra Thapa,Male,29,Middleweight,8,2,2021
+Baluwatar,ProBox Kathmandu,Vinod Magar,Male,26,Welterweight,10,0,2022
+Baluwatar,ProBox Kathmandu,Hansa Bhattarai,Female,29,Flyweight,10,0,2023
+Baluwatar,ProBox Kathmandu,Indu Waiba,Female,23,Welterweight,6,4,2020
+Baluwatar,ProBox Kathmandu,Jyoti K.C.,Female,20,Lightweight,5,5,2024
+Baluwatar,ProBox Kathmandu,Kusum Gurung,Female,23,Heavyweight,9,1,2021
+Baluwatar,ProBox Kathmandu,Laxmi Rai,Female,27,Middleweight,7,3,2022
+Baluwatar,ProBox Kathmandu,Mina Shrestha,Female,25,Featherweight,3,7,2023
+Baluwatar,Nepal Fighters Boxing Gym,Wilson Chhetri,Male,22,Middleweight,9,1,2020
+Baluwatar,Nepal Fighters Boxing Gym,Xen Thapa,Male,30,Welterweight,5,5,2023
+Baluwatar,Nepal Fighters Boxing Gym,Yogesh Dhami,Male,19,Heavyweight,1,9,2021
+Baluwatar,Nepal Fighters Boxing Gym,Zorawar Singh,Male,27,Lightweight,7,3,2024
+Baluwatar,Nepal Fighters Boxing Gym,Alok Thakur,Male,25,Bantamweight,4,6,2022
+Baluwatar,Nepal Fighters Boxing Gym,Bikram Yadav,Male,23,Featherweight,8,2,2020
+Baluwatar,Nepal Fighters Boxing Gym,Naina Thapa,Female,24,Flyweight,4,6,2023
+Baluwatar,Nepal Fighters Boxing Gym,Omisha Bhattarai,Female,21,Bantamweight,8,2,2021
+Baluwatar,Nepal Fighters Boxing Gym,Pushpa Adhikari,Female,28,Lightweight,6,4,2024
+Baluwatar,Nepal Fighters Boxing Gym,Queenie Limbu,Female,26,Heavyweight,10,0,2020
+Baluwatar,Nepal Fighters Boxing Gym,Radhika Pradhan,Female,22,Middleweight,9,1,2022
+Baluwatar,Nepal Fighters Boxing Gym,Sarika Karki,Female,29,Welterweight,7,3,2023
+Baluwatar,Victory Boxing & Fitness,Cyruz Ghale,Male,20,Welterweight,3,7,2021
+Baluwatar,Victory Boxing & Fitness,Deepak Rana,Male,28,Heavyweight,5,5,2024
+Baluwatar,Victory Boxing & Fitness,Eshaan K.C.,Male,26,Middleweight,10,0,2020
+Baluwatar,Victory Boxing & Fitness,Fahad Sheikh,Male,21,Lightweight,6,4,2022
+Baluwatar,Victory Boxing & Fitness,Gaurav Tamang,Male,29,Bantamweight,2,8,2023
+Baluwatar,Victory Boxing & Fitness,Hemraj Rana,Male,24,Featherweight,8,2,2021
+Baluwatar,Victory Boxing & Fitness,Shalini Waiba,Female,27,Featherweight,5,5,2024
+Baluwatar,Victory Boxing & Fitness,Tripit Basnet,Female,20,Flyweight,7,3,2020
+Baluwatar,Victory Boxing & Fitness,Vandana Gurung,Female,23,Welterweight,9,1,2022
+Baluwatar,Victory Boxing & Fitness,Wynona Rai,Female,25,Bantamweight,4,6,2023
+Baluwatar,Victory Boxing & Fitness,Twinkle Rana,Female,19,Lightweight,2,8,2021
+Baluwatar,Victory Boxing & Fitness,Usha Chauhan,Female,24,Heavyweight,1,9,2024
+Naxal,Golden Gloves Nepal,Aarav Thapa,Male,22,Lightweight,8,2,2023
+Naxal,Golden Gloves Nepal,Bikash Rai,Male,25,Heavyweight,5,5,2021
+Naxal,Golden Gloves Nepal,Samir Gurung,Male,19,Featherweight,10,0,2024
+Naxal,Golden Gloves Nepal,Rajan Magar,Male,28,Middleweight,7,3,2020
+Naxal,Golden Gloves Nepal,Niraj Shrestha,Male,23,Welterweight,3,7,2022
+Naxal,Golden Gloves Nepal,Ojaswi K.C.,Male,30,Bantamweight,9,1,2021
+Naxal,Golden Gloves Nepal,Anjali Basnet,Female,21,Flyweight,9,1,2024
+Naxal,Golden Gloves Nepal,Bina Limbu,Female,24,Lightweight,6,4,2022
+Naxal,Golden Gloves Nepal,Chandra Ghale,Female,20,Bantamweight,4,6,2020
+Naxal,Golden Gloves Nepal,Deepa Tamang,Female,26,Welterweight,8,2,2023
+Naxal,Golden Gloves Nepal,Elina Rana,Female,22,Featherweight,7,3,2021
+Naxal,Golden Gloves Nepal,Fulmaya Chhetri,Female,19,Middleweight,1,9,2022
+Naxal,UrbanBox Kathmandu,Prashant Poudel,Male,21,Middleweight,5,5,2024
+Naxal,UrbanBox Kathmandu,Qasim Basnet,Male,27,Featherweight,2,8,2020
+Naxal,UrbanBox Kathmandu,Ramesh Dangol,Male,24,Bantamweight,6,4,2023
+Naxal,UrbanBox Kathmandu,Sandeep Waiba,Male,18,Welterweight,0,10,2021
+Naxal,UrbanBox Kathmandu,Tenzin Bhujel,Male,26,Lightweight,8,2,2022
+Naxal,UrbanBox Kathmandu,Uttam Singh,Male,29,Heavyweight,4,6,2020
+Naxal,UrbanBox Kathmandu,Gita Shilpakar,Female,25,Heavyweight,10,0,2024
+Naxal,UrbanBox Kathmandu,Hema Maharjan,Female,29,Flyweight,5,5,2023
+Naxal,UrbanBox Kathmandu,Isha Dhami,Female,23,Welterweight,3,7,2021
+Naxal,UrbanBox Kathmandu,Jyoti Thakuri,Female,20,Bantamweight,9,1,2022
+Naxal,UrbanBox Kathmandu,Kabita Karki,Female,27,Featherweight,5,5,2020
+Naxal,UrbanBox Kathmandu,Laxmi Yadav,Female,24,Lightweight,7,3,2023
+Naxal,TopRing Boxing Studio,Victor Mahat,Male,25,Featherweight,10,0,2021
+Naxal,TopRing Boxing Studio,Wesley Jha,Male,22,Heavyweight,7,3,2024
+Naxal,TopRing Boxing Studio,Xavier Chaudhary,Male,20,Bantamweight,1,9,2022
+Naxal,TopRing Boxing Studio,Yogesh Sapkota,Male,27,Welterweight,6,4,2020
+Naxal,TopRing Boxing Studio,Amrit Bajracharya,Male,23,Middleweight,5,5,2023
+Naxal,TopRing Boxing Studio,Bishal Thakur,Male,30,Lightweight,9,1,2022
+Naxal,TopRing Boxing Studio,Mina Pradhan,Female,21,Flyweight,8,2,2021
+Naxal,TopRing Boxing Studio,Nisha Bhattarai,Female,26,Middleweight,4,6,2024
+Naxal,TopRing Boxing Studio,Oshin Adhikari,Female,19,Lightweight,2,8,2020
+Naxal,TopRing Boxing Studio,Priya Koirala,Female,28,Welterweight,9,1,2023
+Naxal,TopRing Boxing Studio,Rashmi Bista,Female,22,Bantamweight,8,2,2022
+Naxal,TopRing Boxing Studio,Sabita Ghimire,Female,24,Featherweight,6,4,2021
+Naxal,RingMasters Boxing Gym,Cheten Raut,Male,19,Welterweight,3,7,2024
+Naxal,RingMasters Boxing Gym,Dawa Lama,Male,25,Heavyweight,7,3,2020
+Naxal,RingMasters Boxing Gym,Gopal Phuyal,Male,21,Bantamweight,2,8,2023
+Naxal,RingMasters Boxing Gym,Hari Sherpa,Male,28,Lightweight,8,2,2022
+Naxal,RingMasters Boxing Gym,Ishan Thami,Male,24,Featherweight,5,5,2021
+Naxal,RingMasters Boxing Gym,Jivan Gurung,Male,26,Middleweight,1,9,2023
+Naxal,RingMasters Boxing Gym,Tara Sunuwar,Female,20,Heavyweight,10,0,2024
+Naxal,RingMasters Boxing Gym,Usha Mukhiya,Female,27,Flyweight,4,6,2020
+Naxal,RingMasters Boxing Gym,Varsha Pariyar,Female,19,Welterweight,7,3,2022
+Naxal,RingMasters Boxing Gym,Yashoda Limbu,Female,23,Bantamweight,9,1,2021
+Naxal,RingMasters Boxing Gym,Zara Rai,Female,25,Featherweight,3,7,2023
+Naxal,RingMasters Boxing Gym,Anuradha Magar,Female,29,Lightweight,5,5,2022
+Sukedhara,PrimePunch Boxing Hub,Karan Dangol,Male,22,Heavyweight,10,0,2023
+Sukedhara,PrimePunch Boxing Hub,Lalit Thapa,Male,19,Lightweight,4,6,2021
+Sukedhara,PrimePunch Boxing Hub,Manoj Shrestha,Male,30,Bantamweight,6,4,2024
+Sukedhara,PrimePunch Boxing Hub,Nabin Gurung,Male,27,Featherweight,8,2,2020
+Sukedhara,PrimePunch Boxing Hub,Omkar Rai,Male,25,Welterweight,7,3,2022
+Sukedhara,PrimePunch Boxing Hub,Prakash Magar,Male,23,Middleweight,9,1,2021
+Sukedhara,PrimePunch Boxing Hub,Bhumika K.C.,Female,21,Flyweight,1,9,2023
+Sukedhara,PrimePunch Boxing Hub,Chandani Basnet,Female,26,Welterweight,9,1,2024
+Sukedhara,PrimePunch Boxing Hub,Dikshya Limbu,Female,20,Bantamweight,7,3,2020
+Sukedhara,PrimePunch Boxing Hub,Esha Ghale,Female,24,Heavyweight,2,8,2022
+Sukedhara,PrimePunch Boxing Hub,Falguni Chhetri,Female,22,Lightweight,8,2,2021
+Sukedhara,PrimePunch Boxing Hub,Ganga Tamang,Female,29,Featherweight,4,6,2023
+Sukedhara,Supreme Boxing Academy,Quincy Bhujel,Male,20,Middleweight,5,5,2024
+Sukedhara,Supreme Boxing Academy,Rabin Singh,Male,28,Welterweight,3,7,2020
+Sukedhara,Supreme Boxing Academy,Sajan Rana,Male,24,Bantamweight,6,4,2022
+Sukedhara,Supreme Boxing Academy,Tilak Karki,Male,21,Featherweight,2,8,2023
+Sukedhara,Supreme Boxing Academy,Unish Shilpakar,Male,29,Lightweight,8,2,2021
+Sukedhara,Supreme Boxing Academy,Vikas Maharjan,Male,26,Heavyweight,10,0,2024
+Sukedhara,Supreme Boxing Academy,Hiralal Rai,Female,18,Flyweight,10,0,2020
+Sukedhara,Supreme Boxing Academy,Indira Waiba,Female,25,Middleweight,6,4,2022
+Sukedhara,Supreme Boxing Academy,Jenisha Poudel,Female,20,Welterweight,5,5,2023
+Sukedhara,Supreme Boxing Academy,Karishma Dhami,Female,23,Lightweight,9,1,2021
+Sukedhara,Supreme Boxing Academy,Luna Jha,Female,27,Bantamweight,7,3,2024
+Sukedhara,Supreme Boxing Academy,Manita Chauhan,Female,25,Featherweight,3,7,2020
+Sukedhara,GlovesUp Boxing & Conditioning,Winston Thakuri,Male,22,Welterweight,9,1,2022
+Sukedhara,GlovesUp Boxing & Conditioning,Xander Bajracharya,Male,30,Middleweight,5,5,2023
+Sukedhara,GlovesUp Boxing & Conditioning,Yubraj Koirala,Male,19,Heavyweight,1,9,2021
+Sukedhara,GlovesUp Boxing & Conditioning,Zorawar Bista,Male,27,Lightweight,7,3,2024
+Sukedhara,GlovesUp Boxing & Conditioning,Alok Pradhan,Male,25,Bantamweight,4,6,2020
+Sukedhara,GlovesUp Boxing & Conditioning,Bibek Yadav,Male,23,Featherweight,8,2,2022
+Sukedhara,GlovesUp Boxing & Conditioning,Nabina Ghimire,Female,24,Flyweight,4,6,2023
+Sukedhara,GlovesUp Boxing & Conditioning,Ojaswi Karki,Female,21,Heavyweight,8,2,2021
+Sukedhara,GlovesUp Boxing & Conditioning,Prabha Shrestha,Female,28,Lightweight,6,4,2024
+Sukedhara,GlovesUp Boxing & Conditioning,Queena Magar,Female,26,Middleweight,10,0,2020
+Sukedhara,GlovesUp Boxing & Conditioning,Rachana Singh,Female,22,Welterweight,9,1,2022
+Sukedhara,GlovesUp Boxing & Conditioning,Sarita Thapa,Female,29,Bantamweight,7,3,2023
+Sukedhara,FightZone Boxing Kathmandu,Cyrus Dangol,Male,20,Bantamweight,3,7,2021
+Sukedhara,FightZone Boxing Kathmandu,Deep K.C.,Male,28,Featherweight,5,5,2024
+Sukedhara,FightZone Boxing Kathmandu,Eshan Bhatta,Male,26,Welterweight,10,0,2020
+Sukedhara,FightZone Boxing Kathmandu,Farid Ansari,Male,21,Lightweight,6,4,2022
+Sukedhara,FightZone Boxing Kathmandu,Ganesh Pariyar,Male,29,Heavyweight,2,8,2023
+Sukedhara,FightZone Boxing Kathmandu,Hemant Sunar,Male,24,Middleweight,8,2,2021
+Sukedhara,FightZone Boxing Kathmandu,Shanti Limbu,Female,27,Featherweight,5,5,2024
+Sukedhara,FightZone Boxing Kathmandu,Tripti Gurung,Female,20,Flyweight,7,3,2020
+Sukedhara,FightZone Boxing Kathmandu,Vanita Rai,Female,23,Welterweight,9,1,2022
+Sukedhara,FightZone Boxing Kathmandu,Wendy Shilpakar,Female,25,Bantamweight,4,6,2023
+Sukedhara,FightZone Boxing Kathmandu,Tejaswini K.C.,Female,19,Lightweight,2,8,2021
+Sukedhara,FightZone Boxing Kathmandu,Urvashi Mahat,Female,24,Heavyweight,1,9,2024
